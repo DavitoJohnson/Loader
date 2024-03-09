@@ -15,6 +15,9 @@ def on_press(key):
         for coord in click_coordinates:
             pyautogui.click(coord[0], coord[1])
             time.sleep(click_delay)
+    elif key == Key.esc:
+        listener.stop()
+        root.destroy()
             
 #Function for changing hotkey
 def change_hotkey():
@@ -27,7 +30,7 @@ def change_hotkey():
 with Listener(on_press=on_press) as listener:
     root = tk.Tk()
     root.title("Auto Loader")
-    label = tk.Label(root, text="Press '{}' to run the auto loader".format(hotkey))
+    label = tk.Label(root, text="Press '{}' to run the auto loader".format(hotkey, click_delay))
     label.pack(padx=20, pady=10)
     change_button =tk.Button(root, text="Change Hotkey", command=change_hotkey)
     change_button.pack(pady=5)
